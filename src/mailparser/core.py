@@ -464,6 +464,11 @@ class MailParser(object):
                     # we need to decode them with encoding python is appying
                     # To maintain the characters
                     payload = p.get_payload(decode=True)
+
+                    # If payload is None, it means that the part is empty
+                    if payload is None:
+                        continue
+
                     cte = p.get("Content-Transfer-Encoding")
                     if cte:
                         cte = cte.lower()
